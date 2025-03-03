@@ -27,6 +27,6 @@ class PostSeeder extends Seeder
         ->hasComments(5,fn()=>['user_id'=>$users->random()])
 
         ->create()
-        ->each(fn($post)=>$post->tags()->attach($tags->random(rand(0,3))));
+        ->each(fn($post)=>$post->tags()->attach($tags->random(rand(1,3))));
     }
 }

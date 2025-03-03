@@ -15,8 +15,8 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
     }
-    
-        
+
+
     public function showRegistrationForm()
     {
 
@@ -31,11 +31,11 @@ class RegisterController extends Controller
             ]);
 
             $validated['password']=Hash::make($validated['password']);
-            
+
             $user=User::create($validated);
 
             Auth::login($user);
 
-            return redirect()->route('home')->withStatus('Inscription Reussi');
+            return redirect()->route('dashboard')->withStatus('Inscription Reussi');
     }
 }

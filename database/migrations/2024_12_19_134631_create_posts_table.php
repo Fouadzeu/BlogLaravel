@@ -11,18 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('cours', function (Blueprint $table) {
             $table->id();
 
             $table->string('title');
 
-            $table->string('slug')->unique();
-
-            $table->string('excerpt');
+            $table->string('description');
 
             $table->text("content");
 
-            $table->string('thumbnail');
+            $table->string('image')->nullable();
 
             $table->timestamps();
         });

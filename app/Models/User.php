@@ -23,6 +23,18 @@ class User extends Authenticatable
         'password',
     ];
 
+    public function certifications()
+{
+    return $this->hasMany(Certification::class);
+}
+
+public function cours()
+{
+    return $this->belongsToMany(\App\Models\Cours::class, 'inscriptions')
+                ->withPivot('progression', 'statut')
+                ->withTimestamps();
+}
+
     /**
      * The attributes that should be hidden for serialization.
      *

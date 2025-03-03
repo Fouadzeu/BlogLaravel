@@ -27,30 +27,30 @@ class LoginController extends Controller
             'email' => ['required', 'email'],
             'password' => ['required','string'],
         ]);
- 
+
         if (Auth::attempt($credentials,(bool) $request->remember)) {
-            
+
             $request->session()->regenerate();
- 
+
             return redirect()->intended(RouteServiceProvider::HOME);
         }
- 
+
         return back()->withErrors([
             'email' => 'Identifiants erronés.',
         ])->onlyInput('email');
     }
-    
+
     public function logout(Request $request): RedirectResponse
 {
     Auth::logout();
- 
+
     $request->session()->invalidate();
- 
+
     $request->session()->regenerateToken();
- 
+
     return redirect('/');
 }
-    
+
     }
 
 

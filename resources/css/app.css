@@ -5,3 +5,10 @@
 [x-cloak]{
 display: none;
 }
+
+.bg-custom {
+    background-image: url('/img/accueil.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
