@@ -36,7 +36,7 @@
             <a href="{{ route('dashboard') }}" class="block">Dashboard</a>
           </li>
           <li class="py-2 px-4 rounded hover:bg-red-700">
-            <a href="{{ route('cours.index') }}" class="block">Mes Cours</a>
+            <a href="{{ route('cours.index') }}" class="block">Cours</a>
           </li>
           <li class="py-2 px-4 rounded hover:bg-red-700">
             <a href="{{ route('tasks.index') }}" class="block">Tâches</a>
@@ -86,7 +86,7 @@
             <a href="#" class="block text-gray-800">Dashboard</a>
           </li>
           <li class="py-2 px-4 rounded hover:bg-gray-200">
-            <a href="{{ route('cours.index') }}" class="block text-gray-800">Mes Cours</a>
+            <a href="{{ route('cours.index') }}" class="block text-gray-800">Cours</a>
           </li>
           <li class="py-2 px-4 rounded hover:bg-gray-200">
             <a href="{{ route('tasks.index') }}" class="block text-gray-800">Tâches</a>
