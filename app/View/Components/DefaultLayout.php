@@ -2,8 +2,10 @@
 
 namespace App\View\Components;
 
+use App\View\Components\AbstractLayout;
 use Closure;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
 
 class DefaultLayout extends AbstractLayout
 {
@@ -13,6 +15,7 @@ class DefaultLayout extends AbstractLayout
      */
     public function render(): View|Closure|string
     {
-        return view('layouts.default');
+        $user=Auth::user();
+        return view('layouts.default',compact("user"));
     }
 }

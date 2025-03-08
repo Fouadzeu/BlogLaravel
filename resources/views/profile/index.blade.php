@@ -1,5 +1,5 @@
 <x-default-layout title="Mon compte">
-    <form action="{{ route('home') }}" method="POST">
+    <form action="{{ route('profile') }}" method="POST">
         @csrf
         @method('PATCH')
         <div class="space-y-12">

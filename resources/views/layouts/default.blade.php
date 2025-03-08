@@ -36,13 +36,7 @@
             <a href="{{ route('dashboard') }}" class="block">Dashboard</a>
           </li>
           <li class="py-2 px-4 rounded hover:bg-red-700">
-            <a href="{{ route('cours.index') }}" class="block">Cours</a>
-          </li>
-          <li class="py-2 px-4 rounded hover:bg-red-700">
-            <a href="{{ route('tasks.index') }}" class="block">Tâches</a>
-          </li>
-          <li class="py-2 px-4 rounded hover:bg-red-700">
-            <a href="{{ route('certifications.index') }}" class="block">Certifications</a>
+            <a href="{{ route('cours.index') }}" class="block">Devoirs</a>
           </li>
           <li class="py-2 px-4 rounded hover:bg-red-700">
             <a href="#" class="block">Paramètres</a>
@@ -83,17 +77,11 @@
       <nav class="flex-1 px-4 py-2">
         <ul>
           <li class="py-2 px-4 rounded hover:bg-gray-200">
-            <a href="#" class="block text-gray-800">Dashboard</a>
+            <a href="{{ route('dashboard') }}" class="block text-gray-800">Dashboard</a>
           </li>
           <li class="py-2 px-4 rounded hover:bg-gray-200">
-            <a href="{{ route('cours.index') }}" class="block text-gray-800">Cours</a>
-          </li>
-          <li class="py-2 px-4 rounded hover:bg-gray-200">
-            <a href="{{ route('tasks.index') }}" class="block text-gray-800">Tâches</a>
-          </li>
-          <li class="py-2 px-4 rounded hover:bg-gray-200">
-            <a href="{{ route('certifications.index') }}" class="block text-gray-800">Certifications</a>
-          </li>
+            <a href="{{ route('cours.index') }}" class="block text-gray-800">Devoirs</a>
+
           <li class="py-2 px-4 rounded hover:bg-gray-200">
             <a href="#" class="block text-gray-800">Paramètres</a>
           </li>
@@ -126,7 +114,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
             </svg>
-          <span class="ml-2 text-gray-800">Jean Dupont</span>
+          <span class="ml-2 text-gray-800">{{ $user->name }}</span>
           <svg class="w-5 h-5 ml-1" fill="currentColor" viewBox="0 0 20 20">
             <path fill-rule="evenodd"
               d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414
