@@ -23,8 +23,8 @@
 
             <div class="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
                 <div class="flex justify-center mb-6">
-                    <a id="etudiantOption" class="option-btn px-4 py-2 mx-2 border rounded" href="{{ route('register') }}">Apprenant</a>
-                    <a id="professeurOption" class="option-btn px-4 py-2 mx-2 border rounded" href="{{ route('register.professeur') }}">Professeur</a>
+                    <a id="etudiantOption" class="option-btn px-4 py-2 mx-2 border rounded" href="{{ route('login') }}">Apprenant</a>
+                    <a id="professeurOption" class="option-btn px-4 py-2 mx-2 border rounded" href="{{ route('loginprof') }}">Professeur</a>
                 </div>
                 <form class="space-y-6" action="{{ $action }}" method="POST" novalidate>
                     <div class="space-y-6">

@@ -5,7 +5,7 @@ namespace App\View\Components;
 use Closure;
 use Illuminate\Contracts\View\View;
 
-class AuthLayout extends AbstractLayout
+class LoginLayout extends AbstractLayout
 {
     public function __construct(
         public string $title='',
@@ -21,6 +21,6 @@ class AuthLayout extends AbstractLayout
      */
     public function render(): View|Closure|string
     {
-        return view('layouts.auth');
+        return view('layouts.login');
     }
 }
