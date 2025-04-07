@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginProfController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('guest:professeur')->except('logout');
@@ -22,7 +21,7 @@ class LoginProfController extends Controller
         return view('auth.login_professeur');
     }
 
-    public function Login(Request $request)
+    public function login(Request $request)
     {
         $credentials = $request->validate([
             'email' => ['required', 'email'],
@@ -48,5 +47,19 @@ class LoginProfController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/');
+    }
+
+
+    protected function authenticated(Request $request, $user)
+    {
+        if (Auth::guard('professeur')->check()) {
+            return redirect()->route('professeur.dashboard');
+        }
+
+        if ($user->hasRole('admin')) {
+            return redirect()->route('admin.dashboard');
+        }
+
+        return redirect()->route('user.dashboard');
     }
 }

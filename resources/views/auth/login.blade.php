@@ -1,4 +1,4 @@
-<x-login-layout title=" Connexion" :action="route('login')" submitMessage="Connexion">
+<x-login-layout title=" Connexion Apprenant" :action="route('user.login')" submitMessage="Connexion">
     <h1 class="text-center text-blue-600">Connexion Apprenant</h1>
     <x-input name="email" label="Adresse Email" type="email" />
     <x-input name="password" label="Mot de passe" type="password"/>
@@ -8,4 +8,3 @@
             <label for="remember" class="ml-3 block text-sm leading-6 text-gray-900">Rester connecté</label>
     </div>
     </x-login-layout>
- 

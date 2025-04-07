@@ -18,29 +18,27 @@
 <body class="antialiased h-full">
     <div class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div class="flex justify-center">
+            <img src="/img/logof.png" alt="logo" class="w-1/6 h-auto ">
         </div>
-        <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
-
-            <div class="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
+        <div class="sm:mx-auto sm:w-full sm:max-w-md">
+            <div class="bg-white py-8 px-6 shadow rounded-lg sm:px-10">
                 <div class="flex justify-center mb-6">
-                    <a id="etudiantOption" class="option-btn px-4 py-2 mx-2 border rounded" href="{{ route('register') }}">Apprenant</a>
-                    <a id="professeurOption" class="option-btn px-4 py-2 mx-2 border rounded" href="{{ route('register.professeur') }}">Professeur</a>
+                    <a id="etudiantOption" class="option-btn px-4 py-2 mx-2 border border-indigo-600 text-indigo-600 rounded-full hover:bg-indigo-600 hover:text-white transition-colors duration-300" href="{{ route('register') }}">Apprenant</a>
+                    <a id="professeurOption" class="option-btn px-4 py-2 mx-2 border border-indigo-600 text-indigo-600 rounded-full hover:bg-indigo-600 hover:text-white transition-colors duration-300" href="{{ route('profregister') }}">Professeur</a>
                 </div>
                 <form class="space-y-6" action="{{ $action }}" method="POST" novalidate>
                     <div class="space-y-6">
-
-                    @csrf
+                        @csrf
                         {{ $slot }}
-
                     </div>
                     <div>
-                        <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">{{ $submitMessage }}</button>
+                        <button type="submit" class="flex w-full justify-center rounded-full bg-indigo-600 px-6 py-2 text-lg font-semibold text-white shadow-lg hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 transition-colors duration-300">{{ $submitMessage }}</button>
                     </div>
                 </form>
+                <p>Vous avez deja un compte? <a href="{{ route('user.login') }}" class="text-blue-800 hover:text-blue-600">Connectez-vous</a></p>
             </div>
         </div>
     </div>
-
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {

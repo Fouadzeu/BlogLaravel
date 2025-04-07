@@ -1,4 +1,4 @@
-<x-register-layout title="Inscription Professeur" :action="route('register.professeur')" submitMessage="Inscription">
+<x-register-layout title="Inscription Professeur" :action="route('prof.register')" submitMessage="Inscription">
     <h1 class="text-center text-blue-600">Inscription Professeur</h1>
     @csrf
     <x-input name="nom" label="Nom complet" />

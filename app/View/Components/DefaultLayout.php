@@ -10,6 +10,14 @@ use Illuminate\Support\Facades\Auth;
 class DefaultLayout extends AbstractLayout
 {
 
+    public function __construct(
+        public string $title='',
+        public string $action='',
+        public string $submitMessage='Soumettre'
+        )
+    {
+        parent::__construct($title);
+    }
     /**
      * Get the view / contents that represent the component.
      */

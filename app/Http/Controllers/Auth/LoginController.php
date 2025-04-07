@@ -28,7 +28,7 @@ class LoginController extends Controller
             'password' => ['required','string'],
         ]);
 
-        if (Auth::attempt($credentials,(bool) $request->remember)) {
+        if (Auth::guard('web')->attempt($credentials,(bool) $request->remember)) {
 
             $request->session()->regenerate();
 
@@ -50,6 +50,20 @@ class LoginController extends Controller
 
     return redirect('/');
 }
+
+
+protected function authenticated(Request $request, $user)
+    {
+        if (Auth::guard('professeur')->user()->check()) {
+            return redirect()->route('professeur.dashboard');
+        }
+
+        if ($user->hasRole('admin')) {
+            return redirect()->route('admin.dashboard');
+        }
+
+        return redirect()->route('user.dashboard');
+    }
 
     }
 

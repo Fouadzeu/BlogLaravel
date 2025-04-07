@@ -45,7 +45,7 @@ class RegisterController extends Controller
 
             Auth::login($user);
 
-            return redirect()->route('dashboard')->with('statuts','Inscription Reussi');
+            return redirect()->route('user.dashboard')->with('statuts','Inscription Reussi');
     }
 
     public function registerProfesseur(Request $request)
@@ -67,6 +67,6 @@ class RegisterController extends Controller
 
         Auth::login($professeur);
 
-        return redirect()->route('dashboardprof')->with('status', 'Inscription Réussie');
+        return redirect()->route('professeur.dashboard')->with('status', 'Inscription Réussie');
     }
 }

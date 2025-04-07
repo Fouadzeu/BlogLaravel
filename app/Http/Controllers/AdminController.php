@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Post;
+use App\Models\Devoir;
+use App\Models\Resultat;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -12,16 +14,27 @@ class AdminController extends Controller
 
     public function __construct(){
         $this->middleware('auth');
+
+
     }
+
+
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        return view('admin.posts.index',[
-            'posts'=>Cours::without('category')->latest()->get(),
 
-        ]);
+    public function dashboard()
+    {
+        $users = User::all();
+        $devoirs = Devoir::all();
+        $soumissions = Resultat::all();
+        return view('admin.dashboard', compact('users', 'devoirs', 'resultats'));
+    }
+
+    public function users()
+    {
+        $users = User::all();
+        return view('admin.index', compact('users'));
     }
 
     /**
@@ -43,7 +56,7 @@ class AdminController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Post $post)
+    public function show(Devoir $devoir)
     {
         //
     }
@@ -51,7 +64,7 @@ class AdminController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Post $post)
+    public function edit(Devoir $devoir)
     {
         //
     }
@@ -59,7 +72,7 @@ class AdminController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, Devoir $devoir)
     {
         //
     }
@@ -67,7 +80,7 @@ class AdminController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Post $post)
+    public function destroy(Devoir $Devoir)
     {
         //
     }

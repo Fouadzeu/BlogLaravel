@@ -1,0 +1,63 @@
+@startuml
+class User {
+    + name : String
+    + specialite_id : Int
+    + email : String
+    + password : String
+    + specialite() : Specialite
+    + devoirs() : List<Devoir>
+    + resultat() : List<Resultat>
+}
+
+class Specialite {
+    + professeurs() : List<Professeur>
+    + users() : List<User>
+    + resultat() : List<Resultat>
+    + devoirs() : List<Devoir>
+}
+
+class Professeur {
+    + nom : String
+    + email : String
+    + password : String
+    + devoir() : List<Devoir>
+}
+
+class Devoir {
+    + titre : String
+    + professeur_id : Int
+    + document : String
+    + content : String
+    + cour : String
+    + specialite_id : Int
+    + description : String
+    + date_debut : Date
+    + date_fin : Date
+    + specialite() : Specialite
+    + user() : List<User>
+    + professeur() : Professeur
+    + resultat() : List<Resultat
+}
+
+class Resultat {
+    + devoir() : Devoir
+    + user() : User
+    + specialite() : Specialite
+}
+
+User "1" --> "1" Specialite
+User "1" --> "*" Devoir
+User "1" --> "*" Resultat
+Specialite "1" --> "*" Professeur
+Specialite "1" --> "*" User
+Specialite "1" --> "*" Devoir
+Specialite "1" --> "*" Resultat
+Professeur "1" --> "*" Devoir
+Devoir "1" --> "1" Specialite
+Devoir "*" --> "*" User
+Devoir "1" --> "1" Professeur
+Devoir "1" --> "*" Resultat
+Resultat "1" --> "1" Devoir
+Resultat "1" --> "1" User
+Resultat "1" --> "1" Specialite
+@enduml

@@ -5,10 +5,13 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LoginProfController;
 use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\CoursController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DevoirController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ResultatController;
 use Illuminate\Support\Facades\Route;
+
+
 
 
 
@@ -25,33 +28,66 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/register',[RegisterController::class,'showRegistrationForm' ])->name('register');
-Route::get('/login',[LoginController::class,'showLoginForm' ])->name('login');
-Route::post('/login',[LoginController::class,'Login' ])->name('login');
-Route::post('/logout',[LoginController::class,'logout' ])->name('logout');
+Route::get('/register/prof',[RegisterController::class,'showProfesseurRegistrationForm' ])->name('profregister');
+Route::post('/registerprof',[RegisterController::class,'registerProfesseur'])->name('prof.register');
+Route::post('/register',[RegisterController::class,'register' ])->name('user.register');
 
-Route::get('/login',[LoginProfController::class,'showLoginForm' ])->name('proflogin');
-Route::post('/login',[LoginProfController::class,'Login' ])->name('proflogin');
-Route::post('/logout',[LoginProfController::class,'logout' ])->name('proflogout');
+Route::prefix('user')->name('user.')->group(function () {
+    Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
+    Route::post('login', [LoginController::class, 'login']);
+    Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+    Route::get('profile',[ProfileController::class,'index'])->name('profile');
+    Route::patch('profile/update/password', [ProfileController::class, 'updatePassword'])->name('profile.update.password');
+    Route::patch('profile/update/email', [ProfileController::class, 'updateEmail'])->name('profile.update.email');
+    Route::get('devoir',[DevoirController::class, 'index'])->name('devoir');
+    Route::post('commencer',[DevoirController::class, 'inscrire'])->name('devoir.inscrire');
+    Route::get('devoirs/{devoir}', [DevoirController::class, 'show'])->name('devoirs.show');
+    Route::post('resultats/store', [ResultatController::class, 'store'])->name('resultats.store');
 
-Route::post('/register',[RegisterController::class,'register' ]);
-Route::patch('/profile', [ProfileController::class, 'updatePassword']);
+
+
+    Route::middleware('auth:web')->group(function () {
+        Route::get('home', [DashboardController::class, 'index'])->name('dashboard');
+    });
+});
+
+
+Route::prefix('professeur')->name('professeur.')->group(function () {
+    Route::get('login', [LoginProfController::class, 'showLoginForm'])->name('login');
+    Route::post('login', [LoginProfController::class, 'login']);
+    Route::post('logout', [LoginProfController::class, 'logout'])->name('logout');
+    Route::get('profile',[ProfileController::class,'indexProf'])->name('profile');
+    Route::patch('profile/update/password', [ProfileController::class, 'updatePasswordProf'])->name('profile.update.password');
+    Route::patch('profile/update/email', [ProfileController::class, 'updateEmailProf'])->name('profile.update.email');
+    Route::get('home/devoirs/create', [DevoirController::class, 'create'])->name('devoirs.create');
+    Route::post('home/devoirs', [DevoirController::class, 'store'])->name('devoirs.store');
+    Route::get('resultats/{id}', [ResultatController::class, 'show'])->name('resultats.show');
+    Route::put('/resultats/{id}', [ResultatController::class, 'update'])->name('resultat.update');
+    Route::get('home/devoirs/show', [DevoirController::class, 'showdevoir'])->name('devoirs.resultat.show');
+    Route::get('devoirs/{id}/resultats', [ResultatController::class, 'resultat'])->name('resultats.index');
+    Route::get('devoirs/{id}', [DevoirController::class, 'showProfDevoir'])->name('devoirs.show');
+
+    Route::middleware('auth:professeur')->group(function () {
+        Route::get('home', [DashboardController::class, 'indexprof'])->name('dashboard');
+    });
+});
+
+Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+    Route::get('/users', [AdminController::class, 'users'])->name('users');
+    // Ajoutez d’autres routes selon vos besoins
+});
 
 Route::resource('/admin/posts', AdminController::class)->except('show')->names('admin.posts');
 
 
-Route::get('/home/profile',[ProfileController::class,'index'])->name('profile');
-Route::get('/home',[DashboardController::class,'index'])->name('dashboard');
-Route::get('/home',[DashboardController::class,'indexprof'])->name('dashboardprof');
 Route::get('/',[AccueilController::class,'index'])->name('index');
 
-Route::get('/categories/{category}',[CoursController::class, 'coursByCategory'])->name('cours.byCategory');
-
-Route::get('register_professeur', [RegisterController::class, 'showProfesseurRegistrationForm'])->name('register.professeur');
-Route::post('register_professeur', [RegisterController::class, 'registerProfesseur']);
 
 
-Route::middleware(['auth'])->group(function() {
-    Route::get('/cours', [CoursController::class, 'index'])->name('cours.index');
-});
 
-Route::post('/inscrire',[CoursController::class, 'UserCour'])->name('cours.inscrire');
+
+
+
+
+
